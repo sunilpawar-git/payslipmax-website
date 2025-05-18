@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Payslip - PayslipMax</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3B82F6;
+            --primary-dark: #2563EB;
+            --success: #10B981;
+            --error: #EF4444;
+            --text: #1F2937;
+            --text-light: #6B7280;
+            --background: #F9FAFB;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background-color: var(--background);
+            line-height: 1.5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .upload-section {
+            padding: 3rem 0;
+        }
+        
+        .upload-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+        
+        p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+        
+        .upload-steps {
+            margin-bottom: 2rem;
+        }
+        
+        .step {
+            display: flex;
+            margin-bottom: 1rem;
+        }
+        
+        .step-number {
+            background-color: var(--primary);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+        }
+        
+        .dropzone {
+            border: 2px dashed var(--primary);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            margin-bottom: 1.5rem;
+            transition: all 0.2s ease;
+        }
+        
+        .dropzone:hover {
+            background-color: rgba(59, 130, 246, 0.05);
+        }
+        
+        .dropzone.highlight {
+            background-color: rgba(59, 130, 246, 0.1);
+            border-color: var(--primary-dark);
+        }
+        
+        .dropzone p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .dropzone-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #E5E7EB;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        
+        input[type="file"] {
+            display: none;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 1rem;
+            text-align: center;
+            transition: background-color 0.2s ease;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .progress-container {
+            margin: 1.5rem 0;
+        }
+        
+        progress {
+            width: 100%;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .success-container, .error-container {
+            display: none;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .success-container h2 {
+            color: var(--success);
+            margin-bottom: 1rem;
+        }
+        
+        .error-container h2 {
+            color: var(--error);
+            margin-bottom: 1rem;
+        }
+        
+        .qr-container {
+            margin: 2rem 0;
+        }
+        
+        .qr-code {
+            margin: 0 auto;
+            max-width: 200px;
+        }
+        
+        .qr-code img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .app-link {
+            padding: 1rem;
+            background-color: #F3F4F6;
+            border-radius: 4px;
+            word-break: break-all;
+            font-family: monospace;
+            margin: 1rem 0;
+        }
+        
+        footer {
+            background-color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid #E5E7EB;
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav-container">
+            <div class="logo">PayslipMax</div>
+            <div>
+                <a href="https://apps.apple.com/app/payslipmax/id1234567890" class="btn btn-outline">Download App</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="upload-section">
+        <div class="container">
+            <div class="upload-container" id="upload-form">
+                <h1>Upload Your Payslip</h1>
+                <p>Share your payslips securely between your devices using PayslipMax.</p>
+
+                <div class="upload-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div>Upload your PDF payslip file here</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div>Add a device token to send it to your device (or scan the QR code later)</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div>Open the provided link on your device to view your payslip</div>
+                    </div>
+                </div>
+
+                <form id="upload-form-element">
+                    <div class="form-group">
+                        <label for="device-token">Device Token (Optional)</label>
+                        <input type="text" id="device-token" name="device_token" placeholder="Enter your device token to send directly to your device">
+                    </div>
+
+                    <div class="dropzone" id="dropzone">
+                        <div class="dropzone-icon">📄</div>
+                        <p><strong>Drag & drop your PDF file here</strong></p>
+                        <p>or</p>
+                        <button type="button" class="btn btn-outline" id="browse-button">Browse Files</button>
+                        <input type="file" id="file-input" name="pdf_file" accept="application/pdf">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password Protection (Optional)</label>
+                        <input type="password" id="password" name="password" placeholder="Add password if your PDF is protected">
+                    </div>
+
+                    <button type="submit" class="btn" id="upload-button">Upload Payslip</button>
+                </form>
+            </div>
+
+            <div class="upload-container loading" id="loading-container">
+                <h2>Uploading Your Payslip</h2>
+                <p>Please wait while we process your file...</p>
+                <div class="progress-container">
+                    <progress id="upload-progress" value="0" max="100"></progress>
+                    <p id="progress-text">0%</p>
+                </div>
+            </div>
+
+            <div class="upload-container success-container" id="success-container">
+                <h2>Upload Successful!</h2>
+                <p>Your payslip has been uploaded successfully. Use one of the options below to open it in the PayslipMax app.</p>
+
+                <div class="qr-container">
+                    <p><strong>Scan this QR code with your device camera:</strong></p>
+                    <div class="qr-code" id="qr-code">
+                        <!-- QR code will be inserted here -->
+                    </div>
+                </div>
+
+                <p><strong>Or click this link on your device:</strong></p>
+                <div class="app-link" id="app-link">
+                    <!-- Deep link will be inserted here -->
+                </div>
+
+                <a href="#" class="btn" id="open-app-button">Open in PayslipMax App</a>
+                <button class="btn btn-outline" id="upload-another-button">Upload Another Payslip</button>
+            </div>
+
+            <div class="upload-container error-container" id="error-container">
+                <h2>Upload Failed</h2>
+                <p id="error-message">There was an error uploading your file. Please try again.</p>
+                <button class="btn" id="try-again-button">Try Again</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 PayslipMax. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elements
+            const dropzone = document.getElementById('dropzone');
+            const fileInput = document.getElementById('file-input');
+            const browseButton = document.getElementById('browse-button');
+            const uploadForm = document.getElementById('upload-form');
+            const uploadFormElement = document.getElementById('upload-form-element');
+            const loadingContainer = document.getElementById('loading-container');
+            const successContainer = document.getElementById('success-container');
+            const errorContainer = document.getElementById('error-container');
+            const uploadProgress = document.getElementById('upload-progress');
+            const progressText = document.getElementById('progress-text');
+            const qrCodeContainer = document.getElementById('qr-code');
+            const appLinkContainer = document.getElementById('app-link');
+            const openAppButton = document.getElementById('open-app-button');
+            const uploadAnotherButton = document.getElementById('upload-another-button');
+            const tryAgainButton = document.getElementById('try-again-button');
+            const errorMessage = document.getElementById('error-message');
+
+            // Browse button click
+            browseButton.addEventListener('click', () => {
+                fileInput.click();
+            });
+
+            // File input change
+            fileInput.addEventListener('change', () => {
+                if (fileInput.files.length > 0) {
+                    showSelectedFile(fileInput.files[0]);
+                }
+            });
+
+            // Drag and drop
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropzone.addEventListener(eventName, preventDefaults, false);
+            });
+
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropzone.addEventListener(eventName, highlight, false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropzone.addEventListener(eventName, unhighlight, false);
+            });
+
+            function highlight() {
+                dropzone.classList.add('highlight');
+            }
+
+            function unhighlight() {
+                dropzone.classList.remove('highlight');
+            }
+
+            dropzone.addEventListener('drop', handleDrop);
+
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+
+                if (files.length > 0) {
+                    fileInput.files = files;
+                    showSelectedFile(files[0]);
+                }
+            }
+
+            function showSelectedFile(file) {
+                dropzone.innerHTML = `
+                    <div class="dropzone-icon">📄</div>
+                    <p><strong>${file.name}</strong></p>
+                    <p>${formatFileSize(file.size)}</p>
+                    <button type="button" class="btn btn-outline" id="change-file-button">Change File</button>
+                `;
+
+                document.getElementById('change-file-button').addEventListener('click', () => {
+                    fileInput.click();
+                });
+            }
+
+            function formatFileSize(bytes) {
+                if (bytes < 1024) return bytes + ' bytes';
+                else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+                else return (bytes / 1048576).toFixed(1) + ' MB';
+            }
+
+            // Form submission
+            uploadFormElement.addEventListener('submit', handleFormSubmit);
+
+            function handleFormSubmit(e) {
+                e.preventDefault();
+
+                if (!fileInput.files.length) {
+                    alert('Please select a PDF file to upload');
+                    return;
+                }
+
+                const file = fileInput.files[0];
+                
+                // Validate file type
+                if (file.type !== 'application/pdf') {
+                    alert('Please select a PDF file');
+                    return;
+                }
+                
+                const formData = new FormData();
+                formData.append('pdf_file', file);
+                formData.append('device_token', document.getElementById('device-token').value);
+                formData.append('password', document.getElementById('password').value);
+
+                // Show loading state
+                uploadForm.style.display = 'none';
+                loadingContainer.style.display = 'block';
+
+                // Upload the file
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', '/api/upload_file.php');
+                
+                // Track upload progress
+                xhr.upload.addEventListener('progress', function(e) {
+                    if (e.lengthComputable) {
+                        const percentComplete = Math.round((e.loaded / e.total) * 100);
+                        uploadProgress.value = percentComplete;
+                        progressText.textContent = percentComplete + '%';
+                    }
+                });
+
+                xhr.onload = function() {
+                    loadingContainer.style.display = 'none';
+
+                    if (xhr.status === 200) {
+                        try {
+                            const response = JSON.parse(xhr.responseText);
+                            
+                            if (response.success) {
+                                // Show success state
+                                successContainer.style.display = 'block';
+                                
+                                // Set QR code
+                                qrCodeContainer.innerHTML = `<img src="${response.qrCode}" alt="QR Code">`;
+                                
+                                // Set app link
+                                appLinkContainer.textContent = response.appLink;
+                                
+                                // Set open app button link
+                                openAppButton.href = response.appLink;
+                            } else {
+                                // Show error state
+                                errorContainer.style.display = 'block';
+                                errorMessage.textContent = response.message || 'Failed to upload file';
+                            }
+                        } catch (error) {
+                            // Show error state for JSON parse error
+                            errorContainer.style.display = 'block';
+                            errorMessage.textContent = 'Error processing server response';
+                        }
+                    } else {
+                        // Show error state for non-200 response
+                        errorContainer.style.display = 'block';
+                        errorMessage.textContent = 'Server error: ' + xhr.status;
+                    }
+                };
+
+                xhr.onerror = function() {
+                    loadingContainer.style.display = 'none';
+                    errorContainer.style.display = 'block';
+                    errorMessage.textContent = 'Network error. Please check your connection.';
+                };
+
+                xhr.send(formData);
+            }
+
+            // Reset buttons
+            uploadAnotherButton.addEventListener('click', resetForm);
+            tryAgainButton.addEventListener('click', resetForm);
+
+            function resetForm() {
+                // Reset the file input
+                fileInput.value = '';
+                
+                // Reset the dropzone
+                dropzone.innerHTML = `
+                    <div class="dropzone-icon">📄</div>
+                    <p><strong>Drag & drop your PDF file here</strong></p>
+                    <p>or</p>
+                    <button type="button" class="btn btn-outline" id="browse-button">Browse Files</button>
+                `;
+                
+                document.getElementById('browse-button').addEventListener('click', () => {
+                    fileInput.click();
+                });
+
+                // Show the upload form again
+                successContainer.style.display = 'none';
+                errorContainer.style.display = 'none';
+                uploadForm.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html> 

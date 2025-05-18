@@ -1,0 +1,4 @@
+   # Deny direct access to PDF and metadata files
+   <FilesMatch "\.(pdf|json|pwd)$">
+     Deny from all
+   </FilesMatch>

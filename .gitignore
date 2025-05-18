@@ -1,0 +1,11 @@
+# PayslipMax Website .gitignore
+
+# Environment configuration and sensitive data
+.env
+config.local.php
+*config.php.bak
+
+# Credentials
+*.pem
+*.key
+*.crt

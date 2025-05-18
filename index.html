@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayslipMax - Secure Payslip Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        :root {
+            --primary: #3B82F6;
+            --primary-dark: #2563EB;
+            --secondary: #10B981;
+            --neutral-bg: #F3F4F6;
+            --neutral-text: #1F2937;
+            --accent: #6366F1;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--neutral-text);
+            background-color: var(--neutral-bg);
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        nav a {
+            margin-left: 1.5rem;
+            text-decoration: none;
+            color: var(--neutral-text);
+            font-weight: 500;
+        }
+        
+        .auth-buttons .btn {
+            margin-left: 1rem;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            color: #4B5563;
+        }
+        
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .btn-outline {
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: rgba(59, 130, 246, 0.05);
+        }
+        
+        .upload-section {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 2rem auto 4rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        
+        .upload-section h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .dropzone {
+            border: 2px dashed #D1D5DB;
+            border-radius: 0.5rem;
+            padding: 3rem 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 1.5rem;
+        }
+        
+        .dropzone:hover, .dropzone.dragover {
+            border-color: var(--primary);
+            background-color: rgba(59, 130, 246, 0.05);
+        }
+        
+        .dropzone-icon {
+            font-size: 2.5rem;
+            color: #9CA3AF;
+            margin-bottom: 1rem;
+        }
+        
+        .dropzone-text {
+            margin-bottom: 1rem;
+        }
+        
+        .file-browser {
+            color: var(--primary);
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        
+        .password-field {
+            margin-bottom: 1.5rem;
+        }
+        
+        .password-field label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .password-field input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #D1D5DB;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .upload-btn {
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 0.5rem;
+            background-color: var(--primary);
+            color: white;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .upload-btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .features {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .features h2 {
+            margin-bottom: 3rem;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            padding: 2rem;
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .how-it-works {
+            padding: 4rem 2rem;
+            background-color: white;
+            text-align: center;
+        }
+        
+        .steps {
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .step {
+            position: relative;
+            padding: 2rem;
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 2.5rem;
+            height: 2.5rem;
+            line-height: 2.5rem;
+            text-align: center;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background-color: var(--neutral-text);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        footer a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+        }
+        
+        /* New styles for upload functionality */
+        .progress-container {
+            margin: 2rem 0;
+        }
+        
+        progress {
+            width: 100%;
+            height: 12px;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .progress-text {
+            text-align: center;
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .success-container {
+            text-align: center;
+            padding: 1rem;
+        }
+        
+        .qr-code {
+            margin: 1.5rem auto;
+            max-width: 150px;
+        }
+        
+        .qr-code img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .small-text {
+            font-size: 0.875rem;
+            color: #6B7280;
+            margin: 1rem 0;
+        }
+        
+        .error-container {
+            text-align: center;
+            padding: 1rem;
+        }
+        
+        .error-message {
+            color: #EF4444;
+            margin-bottom: 1.5rem;
+        }
+        
+        .try-again-btn {
+            margin-top: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .btn-group {
+                flex-direction: column;
+            }
+            
+            header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav {
+                margin-top: 1rem;
+            }
+            
+            nav a {
+                margin-left: 0.75rem;
+                margin-right: 0.75rem;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">PayslipMax</div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Features</a>
+            <a href="#">How It Works</a>
+            <a href="#">Support</a>
+        </nav>
+        <div class="auth-buttons">
+            <a href="#" class="btn btn-outline">Sign In</a>
+            <a href="#" class="btn btn-primary">Sign Up</a>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <h1>Simplify Your Payslip Management</h1>
+        <p>Upload your payslips securely and access them on your mobile device anytime, anywhere.</p>
+        <div class="btn-group">
+            <a href="#" class="btn btn-primary">Download App</a>
+            <a href="#" class="btn btn-outline">Learn More</a>
+        </div>
+    </section>
+    
+    <section class="upload-section">
+        <h2>Upload Your Payslip</h2>
+        <div class="dropzone" id="dropzone">
+            <div class="dropzone-icon">📄</div>
+            <div class="dropzone-text">Drag & Drop Your Payslip Here</div>
+            <div>or <span class="file-browser">Browse Files</span></div>
+        </div>
+        
+        <div class="password-field">
+            <label for="password">Password Protection (Optional)</label>
+            <input type="password" id="password" placeholder="Enter a password for this document">
+        </div>
+        
+        <button class="upload-btn">Upload to My Device</button>
+    </section>
+    
+    <section class="features">
+        <h2>Why Choose PayslipMax</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Secure</h3>
+                <p>End-to-end encryption keeps your financial data safe and private.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Simple</h3>
+                <p>Just upload your payslip and access it instantly on your mobile device.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3>Smart</h3>
+                <p>Automatic data extraction to organize and categorize your financial information.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="how-it-works">
+        <h2>How It Works</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Upload</h3>
+                <p>Upload your payslip on this website.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Open</h3>
+                <p>Open the link on your mobile device.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Manage</h3>
+                <p>View and manage your payslips in the app.</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Contact Us</a>
+        <p>&copy; 2024 PayslipMax. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropzone = document.getElementById('dropzone');
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.accept = 'application/pdf';
+            fileInput.style.display = 'none';
+            document.body.appendChild(fileInput);
+            
+            // File browser click handler
+            document.querySelector('.file-browser').addEventListener('click', () => {
+                fileInput.click();
+            });
+            
+            // File selection handler
+            fileInput.addEventListener('change', handleFileSelect);
+            
+            // Handle drag and drop
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropzone.addEventListener(eventName, preventDefaults, false);
+            });
+            
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropzone.addEventListener(eventName, highlight, false);
+            });
+            
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropzone.addEventListener(eventName, unhighlight, false);
+            });
+            
+            function highlight() {
+                dropzone.classList.add('dragover');
+            }
+            
+            function unhighlight() {
+                dropzone.classList.remove('dragover');
+            }
+            
+            // Drop handler
+            dropzone.addEventListener('drop', handleFileDrop);
+            
+            // Handle upload button click
+            document.querySelector('.upload-btn').addEventListener('click', () => {
+                if (fileInput.files.length > 0) {
+                    uploadFile(fileInput.files[0]);
+                } else {
+                    alert('Please select a file first.');
+                }
+            });
+            
+            // Functions
+            function handleFileSelect(e) {
+                if (e.target.files.length > 0) {
+                    // Just prepare the file, but don't upload until button click
+                    // You can change this to auto-upload if preferred
+                    showSelectedFile(e.target.files[0].name);
+                }
+            }
+            
+            function handleFileDrop(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                
+                if (files.length > 0) {
+                    fileInput.files = files; // Store the files in the input
+                    showSelectedFile(files[0].name);
+                }
+            }
+            
+            function showSelectedFile(filename) {
+                const dropzoneText = document.querySelector('.dropzone-text');
+                dropzoneText.textContent = `Selected: ${filename}`;
+                dropzoneText.style.color = var('--primary');
+            }
+            
+            function uploadFile(file) {
+                // Validate it's a PDF
+                if (file.type !== 'application/pdf') {
+                    alert('Please upload a PDF file.');
+                    return;
+                }
+                
+                // Show progress
+                const uploadSection = document.querySelector('.upload-section');
+                uploadSection.innerHTML = `
+                    <h2>Uploading...</h2>
+                    <div class="progress-container">
+                        <progress id="upload-progress" value="0" max="100"></progress>
+                        <div class="progress-text">0%</div>
+                    </div>
+                `;
+                
+                // Get password if provided
+                const password = document.getElementById('password')?.value || '';
+                
+                // Create FormData
+                const formData = new FormData();
+                formData.append('file', file);
+                formData.append('password', password);
+                
+                // Upload
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', 'api/upload.php');
+                
+                // Progress tracking
+                xhr.upload.addEventListener('progress', (e) => {
+                    if (e.lengthComputable) {
+                        const percentComplete = (e.loaded / e.total) * 100;
+                        document.getElementById('upload-progress').value = percentComplete;
+                        document.querySelector('.progress-text').textContent = Math.round(percentComplete) + '%';
+                    }
+                });
+                
+                // Handle response
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        try {
+                            const response = JSON.parse(xhr.responseText);
+                            if (response.success) {
+                                showSuccessScreen(response);
+                            } else {
+                                showErrorScreen(response.error || 'Upload failed');
+                            }
+                        } catch (error) {
+                            showErrorScreen('Invalid server response');
+                        }
+                    } else {
+                        showErrorScreen('Server error. Please try again.');
+                    }
+                };
+                
+                xhr.onerror = function() {
+                    showErrorScreen('Network error. Please check your connection.');
+                };
+                
+                xhr.send(formData);
+            }
+            
+            function showSuccessScreen(data) {
+                const uploadSection = document.querySelector('.upload-section');
+                uploadSection.innerHTML = `
+                    <h2>Upload Successful!</h2>
+                    <div class="success-container">
+                        <div class="qr-code">
+                            <img src="${data.qrCode}" alt="QR Code">
+                        </div>
+                        <p>Scan this QR code with your device camera or click the button below:</p>
+                        <a href="${data.appLink}" class="btn btn-primary">Open in PayslipMax App</a>
+                        <p class="small-text">If the app doesn't open automatically, you may need to install it first.</p>
+                        <button class="btn btn-outline try-again-btn">Upload Another</button>
+                    </div>
+                `;
+                
+                document.querySelector('.try-again-btn').addEventListener('click', () => {
+                    location.reload();
+                });
+            }
+            
+            function showErrorScreen(errorMessage) {
+                const uploadSection = document.querySelector('.upload-section');
+                uploadSection.innerHTML = `
+                    <h2>Upload Failed</h2>
+                    <div class="error-container">
+                        <p class="error-message">${errorMessage}</p>
+                        <button class="btn btn-primary try-again-btn">Try Again</button>
+                    </div>
+                `;
+                
+                document.querySelector('.try-again-btn').addEventListener('click', () => {
+                    location.reload();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

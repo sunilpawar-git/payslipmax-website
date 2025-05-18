@@ -1,0 +1,14 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "QMMDZ9Y4UF.com.app.payslipmax.PayslipMax",
+        "paths": ["/upload/*", "/api/download*"]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": ["QMMDZ9Y4UF.com.app.payslipmax.PayslipMax"]
+  }
+}

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PayslipMax Upload Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="file"], input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #3B82F6;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #response {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PayslipMax Upload Test</h1>
+        
+        <form id="uploadForm">
+            <div class="form-group">
+                <label for="file">Select PDF File:</label>
+                <input type="file" id="file" name="file" accept="application/pdf" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password (Optional):</label>
+                <input type="password" id="password" name="password" placeholder="Enter password to protect the PDF">
+            </div>
+            
+            <button type="submit">Upload PDF</button>
+        </form>
+        
+        <div id="response">
+            <h3>Server Response:</h3>
+            <pre id="responseContent"></pre>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const fileInput = document.getElementById('file');
+            const passwordInput = document.getElementById('password');
+            const responseDiv = document.getElementById('response');
+            const responseContent = document.getElementById('responseContent');
+            
+            if (!fileInput.files.length) {
+                alert('Please select a PDF file');
+                return;
+            }
+            
+            // Create form data
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+            formData.append('password', passwordInput.value);
+            
+            // Show loading state
+            responseDiv.style.display = 'block';
+            responseContent.textContent = 'Uploading...';
+            
+            // Send request
+            fetch('api/upload.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Display response
+                responseContent.textContent = JSON.stringify(data, null, 2);
+                
+                if (data.success) {
+                    // Add a link to open in app
+                    const link = document.createElement('a');
+                    link.href = data.appLink;
+                    link.textContent = 'Open in PayslipMax App';
+                    link.style.display = 'block';
+                    link.style.marginTop = '10px';
+                    responseDiv.appendChild(link);
+                    
+                    // Display QR code if available
+                    if (data.qrCode) {
+                        const img = document.createElement('img');
+                        img.src = data.qrCode;
+                        img.style.display = 'block';
+                        img.style.marginTop = '10px';
+                        img.style.maxWidth = '200px';
+                        responseDiv.appendChild(img);
+                    }
+                }
+            })
+            .catch(error => {
+                responseContent.textContent = 'Error: ' + error.message;
+            });
+        });
+    </script>
+</body>
+</html>
