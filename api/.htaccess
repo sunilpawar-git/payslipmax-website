@@ -1,8 +1,26 @@
+# PayslipMax API Directory - Ultra Simple for Hostinger
+
+# Enable PHP execution
+AddHandler application/x-httpd-php .php
+
+# Basic security
+Options -Indexes +FollowSymLinks
+
+# Allow access to PHP files
+<Files "*.php">
+    Order Allow,Deny
+    Allow from all
+</Files>
+
+# CORS for API requests
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type"
+</IfModule>
+
 # PayslipMax API .htaccess
 # Provides URL rewriting and security
-
-# Enable rewrite engine
-RewriteEngine On
 
 # Set the base path
 # RewriteBase /
@@ -14,19 +32,6 @@ RewriteRule ^devices/register$ register_device.php [L,QSA]
 RewriteRule ^uploads/pending$ pending_uploads.php [L,QSA]
 RewriteRule ^download$ download_file.php [L,QSA]
 
-# Enable CORS for API requests
-<IfModule mod_headers.c>
-    Header set Access-Control-Allow-Origin "*"
-    Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
-    Header set Access-Control-Allow-Headers "Content-Type, Authorization"
-    Header set Access-Control-Max-Age "3600"
-    
-    # Handle preflight OPTIONS requests
-    RewriteEngine On
-    RewriteCond %{REQUEST_METHOD} OPTIONS
-    RewriteRule ^(.*)$ $1 [R=200,L]
-</IfModule>
-
 # Security headers
 <IfModule mod_headers.c>
     # Protect against clickjacking
@@ -36,9 +41,6 @@ RewriteRule ^download$ download_file.php [L,QSA]
     # Prevent MIME-type sniffing
     Header set X-Content-Type-Options "nosniff"
 </IfModule>
-
-# Prevent directory listing
-Options -Indexes
 
 # Protect sensitive files
 <FilesMatch "(^\.htaccess|\.json$|\.log$|\.(sql|sqlite)$)">

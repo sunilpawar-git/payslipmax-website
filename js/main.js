@@ -122,6 +122,15 @@ class PayslipMaxApp {
                 navToggle.classList.toggle('active');
                 navMenu.classList.toggle('active');
             });
+
+            // Close mobile menu when clicking on nav links
+            const navLinks = navMenu.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
         }
 
         // Smooth scrolling for anchor links

@@ -8,7 +8,7 @@ class PayslipUploader {
         this.maxFileSize = 15 * 1024 * 1024; // 15MB
         this.allowedTypes = ['application/pdf'];
         this.allowedExtensions = ['.pdf'];
-        this.uploadEndpoint = '/api/upload_file.php';
+        this.uploadEndpoint = '/api/upload_file.php'; // Back to original working endpoint
         this.csrfToken = this.generateCSRFToken();
         this.rateLimitCount = 0;
         this.rateLimitWindow = 60000; // 1 minute
