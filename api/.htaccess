@@ -1,0 +1,83 @@
+# PayslipMax API .htaccess
+# Provides URL rewriting and security
+
+# Enable rewrite engine
+RewriteEngine On
+
+# Set the base path
+# RewriteBase /
+
+# Handle API URLs cleanly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^devices/register$ register_device.php [L,QSA]
+RewriteRule ^uploads/pending$ pending_uploads.php [L,QSA]
+RewriteRule ^download$ download_file.php [L,QSA]
+
+# Enable CORS for API requests
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+    Header set Access-Control-Max-Age "3600"
+    
+    # Handle preflight OPTIONS requests
+    RewriteEngine On
+    RewriteCond %{REQUEST_METHOD} OPTIONS
+    RewriteRule ^(.*)$ $1 [R=200,L]
+</IfModule>
+
+# Security headers
+<IfModule mod_headers.c>
+    # Protect against clickjacking
+    Header set X-Frame-Options "SAMEORIGIN"
+    # Mitigate XSS attacks
+    Header set X-XSS-Protection "1; mode=block"
+    # Prevent MIME-type sniffing
+    Header set X-Content-Type-Options "nosniff"
+</IfModule>
+
+# Prevent directory listing
+Options -Indexes
+
+# Protect sensitive files
+<FilesMatch "(^\.htaccess|\.json$|\.log$|\.(sql|sqlite)$)">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Allow access to specific files
+<FilesMatch "^(register_device|download_file|pending_uploads|upload_file)\.php$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+# Protect the uploads directory
+<IfModule mod_rewrite.c>
+    RewriteRule ^uploads/(.*)$ - [F]
+</IfModule>
+
+# PHP settings
+<IfModule mod_php7.c>
+    php_flag display_errors Off
+    php_flag log_errors On
+    php_flag file_uploads On
+    php_value upload_max_filesize 10M
+    php_value post_max_size 10M
+    php_value memory_limit 128M
+    php_value max_execution_time 300
+</IfModule>
+
+# Force HTTPS
+<IfModule mod_rewrite.c>
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# Protect against malicious file uploads
+<IfModule mod_rewrite.c>
+    RewriteCond %{REQUEST_METHOD} POST
+    RewriteCond %{REQUEST_URI} .*upload_file\.php$
+    RewriteCond %{HTTP_REFERER} !^https://(www\.)?payslipmax\.com [NC]
+    RewriteRule .* - [F,L]
+</IfModule> 

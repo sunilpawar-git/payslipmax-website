@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayslipMax - Your Digital Payslip Companion</title>
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="PayslipMax - The ultimate digital payslip management solution. Securely store, organize, and analyze your payslips with beautiful insights and seamless mobile integration.">
+    <meta name="keywords" content="payslip, salary, digital, management, PDF, mobile app, insights, analytics, secure">
+    <meta name="author" content="PayslipMax">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="PayslipMax - Your Digital Payslip Companion">
+    <meta property="og:description" content="Transform your payslip management with PayslipMax. Secure storage, beautiful insights, and seamless mobile experience.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.payslipmax.com">
+    <meta property="og:image" content="https://www.payslipmax.com/images/og-image.jpg">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PayslipMax - Your Digital Payslip Companion">
+    <meta name="twitter:description" content="Transform your payslip management with PayslipMax. Secure storage, beautiful insights, and seamless mobile experience.">
+    <meta name="twitter:image" content="https://www.payslipmax.com/images/twitter-image.jpg">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" as="style">
+    <link rel="preload" href="css/style.css" as="style">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "PayslipMax",
+        "description": "Digital payslip management solution with secure storage and analytics",
+        "url": "https://www.payslipmax.com",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "iOS, Android, Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <i class="fas fa-file-invoice-dollar"></i>
+            </div>
+            <div class="loading-text">PayslipMax</div>
+            <div class="loading-progress">
+                <div class="loading-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-brand">
+                <div class="brand-glow"></div>
+                <i class="fas fa-file-invoice-dollar brand-icon"></i>
+                <span class="brand-text">PayslipMax</span>
+            </a>
+            
+            <div class="nav-menu">
+                <a href="#home" class="nav-link active">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="#features" class="nav-link">
+                    <i class="fas fa-star"></i>
+                    <span>Features</span>
+                </a>
+                <a href="#how-it-works" class="nav-link">
+                    <i class="fas fa-cogs"></i>
+                    <span>How It Works</span>
+                </a>
+                <a href="#upload" class="nav-link">
+                    <i class="fas fa-upload"></i>
+                    <span>Upload</span>
+                </a>
+                <a href="#testimonials" class="nav-link">
+                    <i class="fas fa-comments"></i>
+                    <span>Reviews</span>
+                </a>
+                <a href="#pricing" class="nav-link">
+                    <i class="fas fa-tags"></i>
+                    <span>Pricing</span>
+                </a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="#upload" class="btn btn-primary btn-glow">
+                    <i class="fas fa-rocket"></i>
+                    <span>Get Started</span>
+                    <div class="btn-particles"></div>
+                </a>
+            </div>
+            
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-background">
+            <div class="hero-particles"></div>
+            <div class="hero-gradient"></div>
+        </div>
+        
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-sparkles"></i>
+                    <span>New: AI-Powered Insights</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    Your <span class="gradient-text">Digital Payslip</span><br>
+                    Companion for Life
+                </h1>
+                
+                <p class="hero-description">
+                    Transform your payslip management with PayslipMax. Securely store, organize, and analyze your salary documents with beautiful insights and seamless mobile integration.
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">50K+</span>
+                        <span class="stat-label">Active Users</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">1M+</span>
+                        <span class="stat-label">Payslips Processed</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">99.9%</span>
+                        <span class="stat-label">Uptime</span>
+                    </div>
+                </div>
+                
+                <div class="hero-actions">
+                    <a href="#upload" class="btn btn-primary btn-glow">
+                        <i class="fas fa-upload"></i>
+                        <span>Upload Your First Payslip</span>
+                        <div class="btn-particles"></div>
+                    </a>
+                    <a href="#features" class="btn btn-secondary">
+                        <i class="fas fa-play"></i>
+                        <span>Watch Demo</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="app-interface">
+                            <div class="app-header">
+                                <div class="app-title">PayslipMax</div>
+                                <div class="app-notification">3</div>
+                            </div>
+                            
+                            <div class="payslip-card">
+                                <div class="payslip-header">
+                                    <div class="company-logo"></div>
+                                    <div class="payslip-date">Dec 2024</div>
+                                </div>
+                                <div class="payslip-amount">$5,250.00</div>
+                                <div class="payslip-details">
+                                    <div class="detail-item">
+                                        <span>Gross Pay</span>
+                                        <span>$6,000.00</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span>Deductions</span>
+                                        <span>$750.00</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span>Net Pay</span>
+                                        <span>$5,250.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="insights-preview">
+                                <div class="insight-chart"></div>
+                                <div class="insight-text">+12% vs last month</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="floating-elements">
+                    <div class="floating-icon" style="--delay: 0s;">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="floating-icon" style="--delay: 0.5s;">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="floating-icon" style="--delay: 1s;">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <div class="scroll-arrow">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-star"></i>
+                    <span>Features</span>
+                </div>
+                <h2 class="section-title">
+                    Everything you need to manage your <span class="gradient-text">payslips</span>
+                </h2>
+                <p class="section-description">
+                    Discover powerful features designed to make payslip management effortless, secure, and insightful.
+                </p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card glass">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Bank-Level Security</h3>
+                    <p class="feature-description">
+                        Your payslips are protected with enterprise-grade encryption and security measures.
+                    </p>
+                    <div class="feature-benefits">
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i>
+                            <span>256-bit AES encryption</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i>
+                            <span>Secure cloud storage</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i>
+                            <span>GDPR compliant</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-card glass">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Smart Analytics</h3>
+                    <p class="feature-description">
+                        Get beautiful insights into your salary trends, deductions, and financial growth.
+                    </p>
+                    <div class="feature-benefits">
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i>
+                            <span>Salary trend analysis</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i>
+                            <span>Tax optimization tips</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i>
+                            <span>Custom reports</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-card glass">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Mobile First</h3>
+                    <p class="feature-description">
+                        Access your payslips anywhere with our beautiful mobile app and web interface.
+                    </p>
+                    <div class="feature-benefits">
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i>
+                            <span>iOS & Android apps</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i>
+                            <span>Offline access</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i>
+                            <span>Sync across devices</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-card glass">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="feature-title">AI-Powered</h3>
+                    <p class="feature-description">
+                        Automatic data extraction and intelligent categorization of your payslip information.
+                    </p>
+                    <div class="feature-benefits">
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i>
+                            <span>Auto data extraction</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i>
+                            <span>Smart categorization</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i>
+                            <span>Anomaly detection</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-card glass">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="feature-title">Smart Search</h3>
+                    <p class="feature-description">
+                        Find any payslip instantly with powerful search and filtering capabilities.
+                    </p>
+                    <div class="feature-benefits">
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i>
+                            <span>Full-text search</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i>
+                            <span>Date range filters</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i>
+                            <span>Tag organization</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-card glass">
+                    <div class="feature-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Easy Sharing</h3>
+                    <p class="feature-description">
+                        Share payslips securely with accountants, banks, or for loan applications.
+                    </p>
+                    <div class="feature-benefits">
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i>
+                            <span>Secure sharing links</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i>
+                            <span>Time-limited access</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i>
+                            <span>Audit trail</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-cogs"></i>
+                    <span>How It Works</span>
+                </div>
+                <h2 class="section-title">
+                    Get started in <span class="gradient-text">3 simple steps</span>
+                </h2>
+                <p class="section-description">
+                    Transform your payslip management in minutes with our intuitive process.
+                </p>
+            </div>
+            
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Upload Your Payslip</h3>
+                        <p class="step-description">
+                            Simply drag and drop your PDF payslip or use our mobile app to scan and upload.
+                        </p>
+                        <div class="step-features">
+                            <span class="step-feature">PDF Support</span>
+                            <span class="step-feature">Mobile Scanning</span>
+                            <span class="step-feature">Bulk Upload</span>
+                        </div>
+                    </div>
+                    <div class="step-visual">
+                        <div class="upload-animation">
+                            <i class="fas fa-file-pdf"></i>
+                            <i class="fas fa-arrow-up"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3 class="step-title">AI Extracts Data</h3>
+                        <p class="step-description">
+                            Our advanced AI automatically extracts and categorizes all important information from your payslip.
+                        </p>
+                        <div class="step-features">
+                            <span class="step-feature">Auto Extraction</span>
+                            <span class="step-feature">Smart Categorization</span>
+                            <span class="step-feature">Error Detection</span>
+                        </div>
+                    </div>
+                    <div class="step-visual">
+                        <div class="ai-animation">
+                            <i class="fas fa-brain"></i>
+                            <div class="processing-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Access Insights</h3>
+                        <p class="step-description">
+                            View beautiful analytics, track salary trends, and access your payslips from any device.
+                        </p>
+                        <div class="step-features">
+                            <span class="step-feature">Beautiful Charts</span>
+                            <span class="step-feature">Trend Analysis</span>
+                            <span class="step-feature">Mobile Access</span>
+                        </div>
+                    </div>
+                    <div class="step-visual">
+                        <div class="insights-animation">
+                            <i class="fas fa-chart-bar"></i>
+                            <div class="chart-bars">
+                                <span style="height: 60%"></span>
+                                <span style="height: 80%"></span>
+                                <span style="height: 100%"></span>
+                                <span style="height: 70%"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upload Section -->
+    <section id="upload" class="upload-section">
+        <div class="container">
+            <div class="upload-card glass">
+                <div class="upload-header">
+                    <h2 class="upload-title">Upload Your Payslip</h2>
+                    <p class="upload-subtitle">
+                        Drag and drop your PDF payslip below or click to browse files
+                    </p>
+                </div>
+                
+                <div id="dropzone" class="dropzone">
+                    <div class="dropzone-content">
+                        <div class="dropzone-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <h3 class="dropzone-title">Drop your payslip here</h3>
+                        <p class="dropzone-text">or</p>
+                        <button class="file-browser btn btn-secondary">
+                            <i class="fas fa-folder-open"></i>
+                            <span>Browse Files</span>
+                        </button>
+                        <p class="dropzone-help">
+                            Supports PDF files up to 15MB
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="upload-options">
+                    <div class="form-group">
+                        <label for="device-token" class="form-label">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>Device Token (Optional)</span>
+                        </label>
+                        <input type="text" id="device-token" class="form-input" placeholder="Enter your device token to sync with mobile app">
+                        <div class="form-help">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Get this from your PayslipMax mobile app settings</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="upload-password" class="form-label">
+                            <i class="fas fa-lock"></i>
+                            <span>Password Protection (Optional)</span>
+                        </label>
+                        <input type="password" id="upload-password" class="form-input" placeholder="Set a password for this payslip">
+                        <div class="form-help">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Add extra security to your payslip</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="security-notice">
+                    <div class="security-icon">
+                        <i class="fas fa-shield-check"></i>
+                    </div>
+                    <div class="security-content">
+                        <h4 class="security-title">Your data is secure</h4>
+                        <p class="security-text">
+                            All uploads are encrypted with bank-level security and stored securely in the cloud.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-comments"></i>
+                    <span>Testimonials</span>
+                </div>
+                <h2 class="section-title">
+                    Loved by <span class="gradient-text">thousands</span> of users
+                </h2>
+                <p class="section-description">
+                    See what our users say about their PayslipMax experience.
+                </p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card glass">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "PayslipMax has completely transformed how I manage my salary documents. The insights are incredible and the mobile app is so convenient!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <div class="author-name">Sarah Johnson</div>
+                            <div class="author-role">Software Engineer</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card glass">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "The AI-powered data extraction is amazing. It saves me hours of manual work and the analytics help me track my financial growth."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <div class="author-name">Michael Chen</div>
+                            <div class="author-role">Marketing Manager</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card glass">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "Security was my main concern, but PayslipMax's bank-level encryption gives me complete peace of mind. Highly recommended!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <div class="author-name">Emily Rodriguez</div>
+                            <div class="author-role">Financial Analyst</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-tags"></i>
+                    <span>Pricing</span>
+                </div>
+                <h2 class="section-title">
+                    Choose your <span class="gradient-text">perfect plan</span>
+                </h2>
+                <p class="section-description">
+                    Start free and upgrade as you grow. All plans include our core features.
+                </p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card glass">
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">Free</h3>
+                        <div class="pricing-price">
+                            <span class="price-currency">$</span>
+                            <span class="price-amount">0</span>
+                            <span class="price-period">/month</span>
+                        </div>
+                        <p class="pricing-description">Perfect for getting started</p>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Up to 10 payslips</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Basic analytics</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Mobile app access</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Secure storage</span>
+                        </div>
+                    </div>
+                    <button class="pricing-button btn btn-outline">
+                        <span>Get Started Free</span>
+                    </button>
+                </div>
+                
+                <div class="pricing-card glass featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">Pro</h3>
+                        <div class="pricing-price">
+                            <span class="price-currency">$</span>
+                            <span class="price-amount">9</span>
+                            <span class="price-period">/month</span>
+                        </div>
+                        <p class="pricing-description">For professionals and freelancers</p>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Unlimited payslips</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Advanced analytics</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>AI-powered insights</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Priority support</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Custom reports</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>API access</span>
+                        </div>
+                    </div>
+                    <button class="pricing-button btn btn-primary btn-glow">
+                        <span>Start Pro Trial</span>
+                        <div class="btn-particles"></div>
+                    </button>
+                </div>
+                
+                <div class="pricing-card glass">
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">Enterprise</h3>
+                        <div class="pricing-price">
+                            <span class="price-currency">$</span>
+                            <span class="price-amount">29</span>
+                            <span class="price-period">/month</span>
+                        </div>
+                        <p class="pricing-description">For teams and organizations</p>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Everything in Pro</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Team management</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>SSO integration</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Advanced security</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Dedicated support</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Custom integrations</span>
+                        </div>
+                    </div>
+                    <button class="pricing-button btn btn-outline">
+                        <span>Contact Sales</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span>PayslipMax</span>
+                    </div>
+                    <p class="footer-description">
+                        The ultimate digital payslip management solution. Secure, intelligent, and beautiful.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Discord">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Product</h4>
+                    <ul class="footer-links">
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#upload">Upload</a></li>
+                        <li><a href="#">Mobile App</a></li>
+                        <li><a href="#">API</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">Status</a></li>
+                        <li><a href="#">Security</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">GDPR</a></li>
+                        <li><a href="#">Compliance</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>&copy; 2024 PayslipMax. All rights reserved.</p>
+                </div>
+                <div class="footer-badges">
+                    <div class="security-badge">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>SOC 2 Certified</span>
+                    </div>
+                    <div class="security-badge">
+                        <i class="fas fa-lock"></i>
+                        <span>GDPR Compliant</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/upload.js"></script>
+    
+    <!-- Analytics (Replace with your actual analytics code) -->
+    <script>
+        // Google Analytics or other analytics code would go here
+        console.log('PayslipMax website loaded successfully!');
+    </script>
+</body>
+</html> 
