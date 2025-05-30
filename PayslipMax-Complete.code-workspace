@@ -1,0 +1,53 @@
+{
+    "folders": [
+        {
+            "name": "PayslipMax Website",
+            "path": "."
+        },
+        {
+            "name": "PayslipMax App", 
+            "path": "../PayslipMax-App"
+        }
+    ],
+    "settings": {
+        "cursor.rules": [
+            {
+                "include": ["**/*.php", "**/*.html", "**/*.css", "**/*.js"],
+                "description": "Website files - PHP backend with HTML/CSS/JS frontend"
+            },
+            {
+                "include": ["**/*.swift", "**/*.h", "**/*.m", "**/*.plist", "**/*.xcconfig"],
+                "description": "iOS app files - Swift/Objective-C code and configuration"
+            },
+            {
+                "include": ["**/*.dart", "**/*.yaml", "**/*.json"],
+                "description": "Future Android app files - Flutter/Dart code and configuration"
+            }
+        ],
+        "files.associations": {
+            "*.php": "php",
+            "*.swift": "swift",
+            "*.h": "objective-c",
+            "*.m": "objective-c",
+            "*.dart": "dart"
+        },
+        "search.exclude": {
+            "**/node_modules": true,
+            "**/uploads": true,
+            "**/.dart_tool": true,
+            "**/build": true,
+            "**/DerivedData": true,
+            "**/*.xcworkspace/xcuserdata": true,
+            "**/*.xcodeproj/xcuserdata": true,
+            "**/Pods": true
+        }
+    },
+    "extensions": {
+        "recommendations": [
+            "ms-vscode.vscode-php-debug",
+            "sswg.swift-lang",
+            "dart-code.dart-code",
+            "dart-code.flutter"
+        ]
+    }
+} 

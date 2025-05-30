@@ -121,12 +121,18 @@ try {
     @file_put_contents($logFile, json_encode($logData) . "\n", FILE_APPEND | LOCK_EX);
     
     // Create deep link for mobile app with all necessary parameters
+    $secureToken = hash('sha256', $uploadId . $fileName . $file['size'] . time());
+    $isPasswordProtected = !empty($password);
+    
     $deepLink = "payslipmax://upload?" . http_build_query([
         'id' => $uploadId,
         'filename' => $fileName,
         'size' => $file['size'],
         'timestamp' => time(),
-        'hash' => hash('sha256', $uploadId . $fileName . $file['size'])
+        'hash' => hash('sha256', $uploadId . $fileName . $file['size']),
+        'token' => $secureToken,
+        'protected' => $isPasswordProtected ? 'true' : 'false',
+        'source' => 'website'
     ]);
     
     // Generate QR code URL using a reliable QR code service
